@@ -3,6 +3,6 @@
 	<User name="chubixx"/>
     <Resolution x="1366" y="768"/>
     <ScreenSize x="1366" y="768"/>
-    <Fullscreen enabled="no"/>
+    <Fullscreen enabled="yes"/>
     <Font blue="255" green="255" red="255" size="20"/>
 </ConfigFile>

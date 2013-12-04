@@ -263,241 +263,240 @@ int main( int argc, char* args[] )
 
     while( quit == false )
     {
-        if( SDL_PollEvent( &event ) )
+        if(receiver->isKeyPressed(SDLK_UP))
         {
-            if( event.type == SDL_KEYDOWN )
+            if((cursor_y>lim_y1) ||
+               (cursor_y <= lim_y1 &&cursor_y > 0 && lim_y1 <= 2))
             {
-                switch( event.key.keysym.sym )
-                {
-                    case SDLK_UP:
-                        if((cursor_y>lim_y1) ||
-                           (cursor_y <= lim_y1 &&cursor_y > 0 && lim_y1 <= 2))
-                        {
-                            sound->playSound("cursor_move_sound");
-                            cursor_y--;
-                        }else if(cursor_y <= lim_y1 && lim_y1 > 2)
-                        {
-                            sound->playSound("cursor_move_sound");
-                            cursor_y--;
-                            lim_y1--;
-                            lim_y2--;
-                            scr_off_y--;
-                        }
-                        break;
-                    case SDLK_DOWN:
-                        if((cursor_y < lim_y2) ||
-                           (cursor_y >= lim_y2 &&
-                            cursor_y < (sizeof(tablero)/sizeof(tablero[0]))-1 &&
-                            lim_y2 >= (sizeof(tablero)/sizeof(tablero[0]))-3))
-                        {
-                            sound->playSound("cursor_move_sound");
-                            cursor_y++;
-                        }else if(cursor_y >= lim_y2 && lim_y2 < (sizeof(tablero)/sizeof(tablero[0]))-3)
-                        {
-                            sound->playSound("cursor_move_sound");
-                            cursor_y++;
-                            lim_y1++;
-                            lim_y2++;
-                            scr_off_y++;
-                        }
-                        break;
-                    case SDLK_LEFT:
-                        if((cursor_x>lim_x1) ||
-                           (cursor_x <= lim_x1 &&cursor_x > 0 && lim_x1 <= 2))
-                        {
-                            sound->playSound("cursor_move_sound");
-                            cursor_x--;
-                        }else if(cursor_x <= lim_x1 && lim_x1 > 2)
-                        {
-                            sound->playSound("cursor_move_sound");
-                            cursor_x--;
-                            lim_x1--;
-                            lim_x2--;
-                            scr_off_x--;
-                        }
-                        break;
-                    case SDLK_RIGHT:
-                        if((cursor_x < lim_x2) ||
-                           (cursor_x >= lim_x2 && cursor_x < sizeof(tablero[0])-1 && lim_x2 >= sizeof(tablero[0])-3))
-                        {
-                            sound->playSound("cursor_move_sound");
-                            cursor_x++;
-                        }else if(cursor_x >= lim_x2 && lim_x2 < sizeof(tablero[0])-3)
-                        {
-                            sound->playSound("cursor_move_sound");
-                            cursor_x++;
-                            lim_x1++;
-                            lim_x2++;
-                            scr_off_x++;
-                        }
-                        break;
-                    case SDLK_z:
-                        if(turn % 2 == 0)
-                        {
-                            for(int i = 0; i < Player1.size(); i++)
-                            {
-                                if((cursor_x == Player1[i]->Pos_x && cursor_y == Player1[i]->Pos_y) && Player1[i]->has_moved)
-                                {
-                                    sound->playSound("invalid_move_sound");
-                                    break;
-                                }
-                                if((cursor_x == Player1[i]->Pos_x && cursor_y == Player1[i]->Pos_y) && !Player1[i]->moving)
-                                {
-                                    for(int e = 0; e < Player1.size(); e++)
-                                    {
-                                        if(Player1[e]->moving)
-                                        {
-                                            sound->playSound("invalid_move_sound");
-                                            goto DATEND2;
-                                        }
-                                    }
-                                    for(int e = 0; e < Player2.size(); e++)
-                                    {
-                                        if(Player2[e]->moving)
-                                        {
-                                            sound->playSound("invalid_move_sound");
-                                            goto DATEND2;
-                                        }
-
-                                    }
-                                    Player1[i]->moving = true;
-                                    sound->playSound("select_sound");
-                                    DATEND2:;
-                                }else if((cursor_x == Player1[i]->Pos_x && cursor_y == Player1[i]->Pos_y) && Player1[i]->moving)
-                                {
-                                    sound->playSound("unselect_sound");
-                                    Player1[i]->moving = false;
-                                }else if((cursor_x != Player1[i]->Pos_x || cursor_y != Player1[i]->Pos_y) && Player1[i]->moving)
-                                {
-                                    for(int e = 0; e < Player1.size(); e++)
-                                    {
-                                        if(cursor_x == Player1[e]->Pos_x && cursor_y == Player1[e]->Pos_y)
-                                            goto DATEND;
-                                    }
-                                    for(int e = 0; e < Player2.size(); e++)
-                                    {
-                                        if(cursor_x == Player2[e]->Pos_x && cursor_y == Player2[e]->Pos_y)
-                                            goto DATEND;
-                                    }
-
-                                    Player1[i]->currently_moving = (Player1[i]->get_to_goal(tablero, Player1[i]->Pos_x, Player1[i]->Pos_y, Player1[i]->Pasos, cursor_x, cursor_y, Player2));
-                                    if(Player1[i]->currently_moving)
-                                    {
-                                        Player1[i]->moving = false;
-                                        Player1[i]->Positions = Player1[i]->getPositions(tablero, Player1[i]->Pos_x, Player1[i]->Pos_y, Player1[i]->Pasos, cursor_x, cursor_y, '0', Player2);
-                                        Player1[i]->moving_x = Player1[i]->Pos_x*64;
-                                        Player1[i]->moving_y = Player1[i]->Pos_y*64;
-                                        Player1[i]->pos_vector = Player1[i]->Positions.size()-1;
-                                        sound->playSound("move_complete_sound");
-                                    }else
-                                    {
-                                        sound->playSound("invalid_move_sound");
-
-                                    }
-
-                                    DATEND:;
-                                }
-                            }
-                        }else
-                        {
-                            for(int i = 0; i < Player2.size(); i++)
-                            {
-                                if((cursor_x == Player2[i]->Pos_x && cursor_y == Player2[i]->Pos_y) && Player2[i]->has_moved)
-                                {
-                                    sound->playSound("invalid_move_sound");
-                                    break;
-                                }
-                                if((cursor_x == Player2[i]->Pos_x && cursor_y == Player2[i]->Pos_y) && !Player2[i]->moving)
-                                {
-                                    for(int e = 0; e < Player2.size(); e++)
-                                    {
-                                        if(Player2[e]->moving)
-                                        {
-                                            sound->playSound("invalid_move_sound");
-                                            goto DATEND4;
-                                        }
-                                    }
-                                    for(int e = 0; e < Player1.size(); e++)
-                                    {
-                                        if(Player1[e]->moving)
-                                        {
-                                            sound->playSound("invalid_move_sound");
-                                            goto DATEND4;
-                                        }
-
-                                    }
-                                    Player2[i]->moving = true;
-                                    sound->playSound("select_sound");
-                                    DATEND4:;
-                                }else if((cursor_x == Player2[i]->Pos_x && cursor_y == Player2[i]->Pos_y) && Player2[i]->moving)
-                                {
-                                    sound->playSound("unselect_sound");
-                                    Player2[i]->moving = false;
-                                }else if((cursor_x != Player2[i]->Pos_x || cursor_y != Player2[i]->Pos_y) && Player2[i]->moving)
-                                {
-                                    for(int e = 0; e < Player2.size(); e++)
-                                    {
-                                        if(cursor_x == Player2[e]->Pos_x && cursor_y == Player2[e]->Pos_y)
-                                            goto DATEND3;
-                                    }
-                                    for(int e = 0; e < Player1.size(); e++)
-                                    {
-                                        if(cursor_x == Player1[e]->Pos_x && cursor_y == Player1[e]->Pos_y)
-                                            goto DATEND3;
-                                    }
-
-                                    Player2[i]->currently_moving = (Player2[i]->get_to_goal(tablero, Player2[i]->Pos_x, Player2[i]->Pos_y, Player2[i]->Pasos, cursor_x, cursor_y, Player1));
-                                    if(Player2[i]->currently_moving)
-                                    {
-                                        Player2[i]->moving = false;
-                                        Player2[i]->Positions = Player2[i]->getPositions(tablero, Player2[i]->Pos_x, Player2[i]->Pos_y, Player2[i]->Pasos, cursor_x, cursor_y, '0', Player1);
-                                        Player2[i]->moving_x = Player2[i]->Pos_x*64;
-                                        Player2[i]->moving_y = Player2[i]->Pos_y*64;
-                                        Player2[i]->pos_vector = Player2[i]->Positions.size()-1;
-                                        sound->playSound("move_complete_sound");
-                                    }else
-                                    {
-                                        sound->playSound("invalid_move_sound");
-
-                                    }
-                                    DATEND3:;
-                                }
-                            }
-                        }
-                        break;
-                    case SDLK_x:
-                        if(turn%2==0)
-                        {
-                            for(int i = 0; i < Player1.size(); i++)
-                            {
-                                if(Player1[i]->moving)
-                                {
-                                    sound->playSound("unselect_sound");
-                                    Player1[i]->moving = false;
-                                    cursor_x = Player1[i]->Pos_x;
-                                    cursor_y = Player1[i]->Pos_y;
-                                }
-                            }
-                        }else
-                        {
-                            for(int i = 0; i < Player2.size(); i++)
-                            {
-                                if(Player2[i]->moving)
-                                {
-                                    sound->playSound("unselect_sound");
-                                    Player2[i]->moving = false;
-                                    cursor_x = Player2[i]->Pos_x;
-                                    cursor_y = Player2[i]->Pos_y;
-                                }
-                            }
-                        }
-                }
-            }
-            else if( event.type == SDL_QUIT )
+                sound->playSound("cursor_move_sound");
+                cursor_y--;
+            }else if(cursor_y <= lim_y1 && lim_y1 > 2)
             {
-                quit = true;
+                sound->playSound("cursor_move_sound");
+                cursor_y--;
+                lim_y1--;
+                lim_y2--;
+                scr_off_y--;
             }
         }
+        if(receiver->isKeyPressed(SDLK_DOWN))
+        {
+            if((cursor_y < lim_y2) ||
+               (cursor_y >= lim_y2 &&
+                cursor_y < (sizeof(tablero)/sizeof(tablero[0]))-1 &&
+                lim_y2 >= (sizeof(tablero)/sizeof(tablero[0]))-3))
+            {
+                sound->playSound("cursor_move_sound");
+                cursor_y++;
+            }else if(cursor_y >= lim_y2 && lim_y2 < (sizeof(tablero)/sizeof(tablero[0]))-3)
+            {
+                sound->playSound("cursor_move_sound");
+                cursor_y++;
+                lim_y1++;
+                lim_y2++;
+                scr_off_y++;
+            }
+        }
+        if(receiver->isKeyPressed(SDLK_LEFT))
+        {
+            if((cursor_x>lim_x1) ||
+               (cursor_x <= lim_x1 &&cursor_x > 0 && lim_x1 <= 2))
+            {
+                sound->playSound("cursor_move_sound");
+                cursor_x--;
+            }else if(cursor_x <= lim_x1 && lim_x1 > 2)
+            {
+                sound->playSound("cursor_move_sound");
+                cursor_x--;
+                lim_x1--;
+                lim_x2--;
+                scr_off_x--;
+            }
+        }
+        if(receiver->isKeyPressed(SDLK_RIGHT))
+        {
+            if((cursor_x < lim_x2) ||
+               (cursor_x >= lim_x2 && cursor_x < sizeof(tablero[0])-1 && lim_x2 >= sizeof(tablero[0])-3))
+            {
+                sound->playSound("cursor_move_sound");
+                cursor_x++;
+            }else if(cursor_x >= lim_x2 && lim_x2 < sizeof(tablero[0])-3)
+            {
+                sound->playSound("cursor_move_sound");
+                cursor_x++;
+                lim_x1++;
+                lim_x2++;
+                scr_off_x++;
+            }
+        }
+        if(receiver->isKeyPressed(SDLK_z))
+        {
+            if(turn % 2 == 0)
+            {
+                for(int i = 0; i < Player1.size(); i++)
+                {
+                    if((cursor_x == Player1[i]->Pos_x && cursor_y == Player1[i]->Pos_y) && Player1[i]->has_moved)
+                    {
+                        sound->playSound("invalid_move_sound");
+                        break;
+                    }
+                    if((cursor_x == Player1[i]->Pos_x && cursor_y == Player1[i]->Pos_y) && !Player1[i]->moving)
+                    {
+                        for(int e = 0; e < Player1.size(); e++)
+                        {
+                            if(Player1[e]->moving)
+                            {
+                                sound->playSound("invalid_move_sound");
+                                goto DATEND2;
+                            }
+                        }
+                        for(int e = 0; e < Player2.size(); e++)
+                        {
+                            if(Player2[e]->moving)
+                            {
+                                sound->playSound("invalid_move_sound");
+                                goto DATEND2;
+                            }
+
+                        }
+                        Player1[i]->moving = true;
+                        sound->playSound("select_sound");
+                        DATEND2:;
+                    }else if((cursor_x == Player1[i]->Pos_x && cursor_y == Player1[i]->Pos_y) && Player1[i]->moving)
+                    {
+                        sound->playSound("unselect_sound");
+                        Player1[i]->moving = false;
+                    }else if((cursor_x != Player1[i]->Pos_x || cursor_y != Player1[i]->Pos_y) && Player1[i]->moving)
+                    {
+                        for(int e = 0; e < Player1.size(); e++)
+                        {
+                            if(cursor_x == Player1[e]->Pos_x && cursor_y == Player1[e]->Pos_y)
+                                goto DATEND;
+                        }
+                        for(int e = 0; e < Player2.size(); e++)
+                        {
+                            if(cursor_x == Player2[e]->Pos_x && cursor_y == Player2[e]->Pos_y)
+                                goto DATEND;
+                        }
+
+                        Player1[i]->currently_moving = (Player1[i]->get_to_goal(tablero, Player1[i]->Pos_x, Player1[i]->Pos_y, Player1[i]->Pasos, cursor_x, cursor_y, Player2));
+                        if(Player1[i]->currently_moving)
+                        {
+                            Player1[i]->moving = false;
+                            Player1[i]->Positions = Player1[i]->getPositions(tablero, Player1[i]->Pos_x, Player1[i]->Pos_y, Player1[i]->Pasos, cursor_x, cursor_y, '0', Player2);
+                            Player1[i]->moving_x = Player1[i]->Pos_x*64;
+                            Player1[i]->moving_y = Player1[i]->Pos_y*64;
+                            Player1[i]->pos_vector = Player1[i]->Positions.size()-1;
+                            sound->playSound("move_complete_sound");
+                        }else
+                        {
+                            sound->playSound("invalid_move_sound");
+
+                        }
+
+                        DATEND:;
+                    }
+                }
+            }else
+            {
+                for(int i = 0; i < Player2.size(); i++)
+                {
+                    if((cursor_x == Player2[i]->Pos_x && cursor_y == Player2[i]->Pos_y) && Player2[i]->has_moved)
+                    {
+                        sound->playSound("invalid_move_sound");
+                        break;
+                    }
+                    if((cursor_x == Player2[i]->Pos_x && cursor_y == Player2[i]->Pos_y) && !Player2[i]->moving)
+                    {
+                        for(int e = 0; e < Player2.size(); e++)
+                        {
+                            if(Player2[e]->moving)
+                            {
+                                sound->playSound("invalid_move_sound");
+                                goto DATEND4;
+                            }
+                        }
+                        for(int e = 0; e < Player1.size(); e++)
+                        {
+                            if(Player1[e]->moving)
+                            {
+                                sound->playSound("invalid_move_sound");
+                                goto DATEND4;
+                            }
+
+                        }
+                        Player2[i]->moving = true;
+                        sound->playSound("select_sound");
+                        DATEND4:;
+                    }else if((cursor_x == Player2[i]->Pos_x && cursor_y == Player2[i]->Pos_y) && Player2[i]->moving)
+                    {
+                        sound->playSound("unselect_sound");
+                        Player2[i]->moving = false;
+                    }else if((cursor_x != Player2[i]->Pos_x || cursor_y != Player2[i]->Pos_y) && Player2[i]->moving)
+                    {
+                        for(int e = 0; e < Player2.size(); e++)
+                        {
+                            if(cursor_x == Player2[e]->Pos_x && cursor_y == Player2[e]->Pos_y)
+                                goto DATEND3;
+                        }
+                        for(int e = 0; e < Player1.size(); e++)
+                        {
+                            if(cursor_x == Player1[e]->Pos_x && cursor_y == Player1[e]->Pos_y)
+                                goto DATEND3;
+                        }
+
+                        Player2[i]->currently_moving = (Player2[i]->get_to_goal(tablero, Player2[i]->Pos_x, Player2[i]->Pos_y, Player2[i]->Pasos, cursor_x, cursor_y, Player1));
+                        if(Player2[i]->currently_moving)
+                        {
+                            Player2[i]->moving = false;
+                            Player2[i]->Positions = Player2[i]->getPositions(tablero, Player2[i]->Pos_x, Player2[i]->Pos_y, Player2[i]->Pasos, cursor_x, cursor_y, '0', Player1);
+                            Player2[i]->moving_x = Player2[i]->Pos_x*64;
+                            Player2[i]->moving_y = Player2[i]->Pos_y*64;
+                            Player2[i]->pos_vector = Player2[i]->Positions.size()-1;
+                            sound->playSound("move_complete_sound");
+                        }else
+                        {
+                            sound->playSound("invalid_move_sound");
+
+                        }
+                        DATEND3:;
+                    }
+                }
+            }
+        }
+        if(receiver->isKeyPressed(SDLK_x))
+        {
+            if(turn%2==0)
+            {
+                for(int i = 0; i < Player1.size(); i++)
+                {
+                    if(Player1[i]->moving)
+                    {
+                        sound->playSound("unselect_sound");
+                        Player1[i]->moving = false;
+                        cursor_x = Player1[i]->Pos_x;
+                        cursor_y = Player1[i]->Pos_y;
+                    }
+                }
+            }else
+            {
+                for(int i = 0; i < Player2.size(); i++)
+                {
+                    if(Player2[i]->moving)
+                    {
+                        sound->playSound("unselect_sound");
+                        Player2[i]->moving = false;
+                        cursor_x = Player2[i]->Pos_x;
+                        cursor_y = Player2[i]->Pos_y;
+                    }
+                }
+            }
+        }
+        if(receiver->isKeyPressed(SDLK_ESCAPE))
+        {
+            exit(0);
+        }
+
 
         for(int yy = 0; yy <14; yy++)
         {
