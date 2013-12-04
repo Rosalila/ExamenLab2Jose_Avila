@@ -1,6 +1,6 @@
 #include "Personaje.h"
 
-Personaje::Personaje(string Clase, int Equipo, int Pos_x, int Pos_y)
+Personaje::Personaje(RosalilaGraphics* rosalila_graphics,string Clase, int Equipo, int Pos_x, int Pos_y)
 {
     this->Clase = Clase;
     this->Equipo = Equipo;
@@ -14,63 +14,63 @@ Personaje::Personaje(string Clase, int Equipo, int Pos_x, int Pos_y)
     this->tiempo = 0;
     this->movement_it = 0;
     this->pos_vector = 0;
-    this->HP_Font = TTF_OpenFont( "lazy.ttf", 15 );
+//    this->HP_Font = TTF_OpenFont( "lazy.ttf", 15 );
     this->moving_x = this->Pos_x * 64;
     this->moving_y = this->Pos_y * 64;
     this->currently_moving = false;
     this->has_moved = false;
-    this->hit_sound = Mix_LoadWAV("Resources/Sounds/Hit_Normal.wav");
-    this->crit_sound = Mix_LoadWAV("Resources/Sounds/Hit_Crit.wav");
-    this->kill_sound = Mix_LoadWAV("Resources/Sounds/Kill_Normal.wav");
-    this->crit_kill_sound = Mix_LoadWAV("Resources/Sounds/Kill_Crit.wav");
-    this->no_dmg_sound = Mix_LoadWAV("Resources/Sounds/No_Dmg.wav");
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Start_Left.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Start_Down.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Start_Right.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Start_Up.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Mid_Vert.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Mid_Hor.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Corner_DL.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Corner_DR.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Corner_UL.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_Corner_UR.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_End_Left.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_End_Down.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_End_Right.png"));
-    this->arrow.push_back(IMG_Load("Resources/MoveSprite/Arrow_End_Up.png"));
-    this->arrow.push_back(IMG_Load(""));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A1.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A2.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A3.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A4.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A5.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A6.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A7.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A8.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A9.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A10.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A11.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A12.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A13.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A14.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A15.png"));
-    this->attacker.push_back(IMG_Load("Resources/MoveSprite/A16.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M1.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M2.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M3.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M4.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M5.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M6.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M7.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M8.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M9.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M10.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M11.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M12.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M13.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M14.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M15.png"));
-    this->movement.push_back(IMG_Load("Resources/MoveSprite/M16.png"));
+//    this->hit_sound = Mix_LoadWAV("Resources/Sounds/Hit_Normal.wav");
+//    this->crit_sound = Mix_LoadWAV("Resources/Sounds/Hit_Crit.wav");
+//    this->kill_sound = Mix_LoadWAV("Resources/Sounds/Kill_Normal.wav");
+//    this->crit_kill_sound = Mix_LoadWAV("Resources/Sounds/Kill_Crit.wav");
+//    this->no_dmg_sound = Mix_LoadWAV("Resources/Sounds/No_Dmg.wav");
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Start_Left.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Start_Down.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Start_Right.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Start_Up.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Mid_Vert.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Mid_Hor.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Corner_DL.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Corner_DR.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Corner_UL.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_Corner_UR.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_End_Left.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_End_Down.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_End_Right.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_End_Up.png"));
+    this->arrow.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/Arrow_End_Up.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A1.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A2.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A3.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A4.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A5.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A6.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A7.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A8.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A9.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A10.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A11.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A12.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A13.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A14.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A15.png"));
+    this->attacker.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/A16.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M1.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M2.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M3.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M4.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M5.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M6.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M7.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M8.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M9.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M10.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M11.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M12.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M13.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M14.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M15.png"));
+    this->movement.push_back(rosalila_graphics->getTexture("Resources/MoveSprite/M16.png"));
     if(this->Clase == "Lord")
     {
         this->Def=28;
@@ -80,56 +80,56 @@ Personaje::Personaje(string Clase, int Equipo, int Pos_x, int Pos_y)
         this->Pasos = 5;
         if(this->Equipo == 1)
         {
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L1.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L2.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L3.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L4.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L5.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L6.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L7.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L8.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L9.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L10.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L11.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L12.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L13.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L14.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L15.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L16.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L17.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L18.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L19.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L20.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L21.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L22.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L1.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L2.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L3.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L4.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L5.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L6.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L7.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L8.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L9.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L10.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L11.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L12.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L13.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L14.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L15.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L16.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L17.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L18.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L19.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L20.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L21.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L22.png"));
         }else
         {
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L1_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L2_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L3_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L4_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L5_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L6_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L7_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L8_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L9_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L10_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L11_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L12_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L13_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L14_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L15_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L16_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L17_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L18_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L19_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L20_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L21_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L22_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L1_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L2_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L3_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L4_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L5_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L6_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L7_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L8_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L9_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L10_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L11_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L12_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L13_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L14_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L15_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L16_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L17_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L18_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L19_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L20_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L21_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L22_.png"));
         }
-        this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L23.png"));
-        this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L24.png"));
-        this->anim.push_back(IMG_Load("Resources/Characters/Great_Lord/L25.png"));
+        this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L23.png"));
+        this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L24.png"));
+        this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Great_Lord/L25.png"));
     }else if(this->Clase == "Assassin")
     {
         this->Def=15;
@@ -167,56 +167,56 @@ Personaje::Personaje(string Clase, int Equipo, int Pos_x, int Pos_y)
         this->Pasos = 7;
         if(this->Equipo == 1)
         {
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K1.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K2.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K3.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K4.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K5.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K6.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K7.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K8.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K9.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K10.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K11.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K12.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K13.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K14.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K15.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K16.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K17.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K18.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K19.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K20.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K21.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K22.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K1.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K2.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K3.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K4.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K5.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K6.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K7.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K8.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K9.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K10.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K11.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K12.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K13.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K14.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K15.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K16.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K17.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K18.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K19.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K20.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K21.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K22.png"));
         }else
         {
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K1_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K2_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K3_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K4_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K5_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K6_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K7_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K8_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K9_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K10_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K11_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K12_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K13_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K14_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K15_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K16_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K17_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K18_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K19_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K20_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K21_.png"));
-            this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K22_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K1_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K2_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K3_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K4_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K5_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K6_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K7_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K8_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K9_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K10_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K11_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K12_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K13_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K14_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K15_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K16_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K17_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K18_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K19_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K20_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K21_.png"));
+            this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K22_.png"));
         }
-        this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K23.png"));
-        this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K24.png"));
-        this->anim.push_back(IMG_Load("Resources/Characters/Knight_Lord/K25.png"));
+        this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K23.png"));
+        this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K24.png"));
+        this->anim.push_back(rosalila_graphics->getTexture("Resources/Characters/Knight_Lord/K25.png"));
     }else if(this->Clase == "Captain")
     {
         this->Def=28;
@@ -301,7 +301,7 @@ void Personaje::pre_attack()
     }
 }
 
-void Personaje::dibujar(SDL_Surface*screen, int offset_x, int offset_y)
+void Personaje::dibujar(RosalilaGraphics* rosalila_graphics, int offset_x, int offset_y)
 {
     SDL_Rect offset;
 
@@ -401,11 +401,22 @@ void Personaje::dibujar(SDL_Surface*screen, int offset_x, int offset_y)
         }
     }
     tiempo++;
-    SDL_BlitSurface(this->anim[iteracion], NULL, screen, &offset);
+//    SDL_BlitSurface(this->anim[iteracion], NULL, screen, &offset);
+    rosalila_graphics->draw2DImage
+    (   this->anim[iteracion],//Image*
+        this->anim[iteracion]->getWidth(),this->anim[iteracion]->getHeight(),//width, height
+        offset.x,offset.y,//x,y
+        1.0,//scale
+        0.0,//rotation
+        false,//flip horizontally
+        0,0,//depth effect x,y
+        Color(255,255,255,255),//collor effect
+        false);//camera alignment
+
     stringstream ss;
     ss <<"HP: "<<this->HP;
-    this->HP_Message = TTF_RenderText_Solid(HP_Font, ss.str().c_str(), HP_Font_Color);
-    SDL_BlitSurface(this->HP_Message, NULL, screen, &offset);
+//    this->HP_Message = TTF_RenderText_Solid(HP_Font, ss.str().c_str(), HP_Font_Color);
+//    SDL_BlitSurface(this->HP_Message, NULL, screen, &offset);
     movement_it++;
     if(movement_it > 15)
     {
@@ -413,7 +424,7 @@ void Personaje::dibujar(SDL_Surface*screen, int offset_x, int offset_y)
     }
 }
 
-void Personaje::logic1(SDL_Surface* screen, char table[14][18], int x_actual, int y_actual, int pasoss, char direction, int off_x, int off_y, vector<Personaje*> opponent)
+void Personaje::logic1(RosalilaGraphics* rosalila_graphics, char table[14][18], int x_actual, int y_actual, int pasoss, char direction, int off_x, int off_y, vector<Personaje*> opponent)
 {
     SDL_Rect offset;
     offset.x=(x_actual-off_x)*64;
@@ -475,23 +486,35 @@ void Personaje::logic1(SDL_Surface* screen, char table[14][18], int x_actual, in
             if(Visited_blue[i]->pos_x == x_actual && Visited_blue[i]->pos_y == y_actual)
                 goto AFTERWARDS;
         }
-        SDL_BlitSurface(this->movement[movement_it], NULL, screen, &offset);
+//        SDL_BlitSurface(this->movement[movement_it], NULL, screen, &offset);
+
+        rosalila_graphics->draw2DImage
+        (   this->movement[movement_it],//Image*
+            this->movement[movement_it]->getWidth(),this->movement[movement_it]->getHeight(),//width, height
+            offset.x,offset.y,//x,y
+            1.0,//scale
+            0.0,//rotation
+            false,//flip horizontally
+            0,0,//depth effect x,y
+            Color(255,255,255,255),//collor effect
+            false);//camera alignment
+
         Visited_blue.push_back(new Position(x_actual, y_actual));
         AFTERWARDS:;
     }
 
     pasoss--;
     if(direction != 'r')
-        logic1(screen, table, x_actual+1, y_actual, pasoss, 'l', off_x, off_y, opponent);
+        logic1(rosalila_graphics, table, x_actual+1, y_actual, pasoss, 'l', off_x, off_y, opponent);
     if(direction != 'l')
-        logic1(screen, table, x_actual-1, y_actual, pasoss, 'r', off_x, off_y, opponent);
+        logic1(rosalila_graphics, table, x_actual-1, y_actual, pasoss, 'r', off_x, off_y, opponent);
     if(direction != 'u')
-        logic1(screen, table, x_actual, y_actual+1, pasoss, 'd', off_x, off_y, opponent);
+        logic1(rosalila_graphics, table, x_actual, y_actual+1, pasoss, 'd', off_x, off_y, opponent);
     if(direction != 'd')
-        logic1(screen, table, x_actual, y_actual-1, pasoss, 'u', off_x, off_y, opponent);
+        logic1(rosalila_graphics, table, x_actual, y_actual-1, pasoss, 'u', off_x, off_y, opponent);
 }
 
-void Personaje::logic2(SDL_Surface* screen, char table[14][18], int x_actual, int y_actual, int pasoss, char direction, int off_x, int off_y, vector<Personaje*> opponent)
+void Personaje::logic2(RosalilaGraphics* rosalila_graphics, char table[14][18], int x_actual, int y_actual, int pasoss, char direction, int off_x, int off_y, vector<Personaje*> opponent)
 {
     SDL_Rect offset;
     offset.x=(x_actual-off_x)*64;
@@ -508,7 +531,19 @@ void Personaje::logic2(SDL_Surface* screen, char table[14][18], int x_actual, in
             if(Visited_blue[i]->pos_x == x_actual && Visited_blue[i]->pos_y == y_actual)
                 return;
         }
-        SDL_BlitSurface(this->attacker[movement_it], NULL, screen, &offset);
+//        SDL_BlitSurface(this->attacker[movement_it], NULL, screen, &offset);
+
+        rosalila_graphics->draw2DImage
+        (   this->attacker[movement_it],//Image*
+            this->attacker[movement_it]->getWidth(),this->attacker[movement_it]->getHeight(),//width, height
+            offset.x,offset.y,//x,y
+            1.0,//scale
+            0.0,//rotation
+            false,//flip horizontally
+            0,0,//depth effect x,y
+            Color(255,255,255,255),//collor effect
+            false);//camera alignment
+
         Visited_red.push_back(new Position(x_actual, y_actual));
         return;
     }
@@ -531,7 +566,19 @@ void Personaje::logic2(SDL_Surface* screen, char table[14][18], int x_actual, in
                 if(Visited_blue[i]->pos_x == x_actual && Visited_blue[i]->pos_y == y_actual)
                     return;
             }
-            SDL_BlitSurface(this->attacker[movement_it], NULL, screen, &offset);
+//            SDL_BlitSurface(this->attacker[movement_it], NULL, screen, &offset);
+
+            rosalila_graphics->draw2DImage
+            (   this->attacker[movement_it],//Image*
+                this->attacker[movement_it]->getWidth(),this->attacker[movement_it]->getHeight(),//width, height
+                offset.x,offset.y,//x,y
+                1.0,//scale
+                0.0,//rotation
+                false,//flip horizontally
+                0,0,//depth effect x,y
+                Color(255,255,255,255),//collor effect
+                false);//camera alignment
+
             Visited_red.push_back(new Position(x_actual, y_actual));
             return;
         }
@@ -557,7 +604,19 @@ void Personaje::logic2(SDL_Surface* screen, char table[14][18], int x_actual, in
                 if(Visited_blue[i]->pos_x == x_actual && Visited_blue[i]->pos_y == y_actual)
                     return;
             }
-            SDL_BlitSurface(this->attacker[movement_it], NULL, screen, &offset);
+//            SDL_BlitSurface(this->attacker[movement_it], NULL, screen, &offset);
+
+            rosalila_graphics->draw2DImage
+            (   this->attacker[movement_it],//Image*
+                this->attacker[movement_it]->getWidth(),this->attacker[movement_it]->getHeight(),//width, height
+                offset.x,offset.y,//x,y
+                1.0,//scale
+                0.0,//rotation
+                false,//flip horizontally
+                0,0,//depth effect x,y
+                Color(255,255,255,255),//collor effect
+                false);//camera alignment
+
             Visited_red.push_back(new Position(x_actual, y_actual));
             return;
         }
@@ -588,20 +647,32 @@ void Personaje::logic2(SDL_Surface* screen, char table[14][18], int x_actual, in
                 if(Visited_blue[i]->pos_x == x_actual && Visited_blue[i]->pos_y == y_actual)
                     return;
             }
-            SDL_BlitSurface(this->attacker[movement_it], NULL, screen, &offset);
+//            SDL_BlitSurface(this->attacker[movement_it], NULL, screen, &offset);
+
+            rosalila_graphics->draw2DImage
+            (   this->attacker[movement_it],//Image*
+                this->attacker[movement_it]->getWidth(),this->attacker[movement_it]->getHeight(),//width, height
+                offset.x,offset.y,//x,y
+                1.0,//scale
+                0.0,//rotation
+                false,//flip horizontally
+                0,0,//depth effect x,y
+                Color(255,255,255,255),//collor effect
+                false);//camera alignment
+
             Visited_red.push_back(new Position(x_actual, y_actual));
             return;
         }
     }
     pasoss--;
     if(direction != 'r')
-        logic2(screen, table, x_actual+1, y_actual, pasoss, 'l', off_x, off_y, opponent);
+        logic2(rosalila_graphics, table, x_actual+1, y_actual, pasoss, 'l', off_x, off_y, opponent);
     if(direction != 'l')
-        logic2(screen, table, x_actual-1, y_actual, pasoss, 'r', off_x, off_y, opponent);
+        logic2(rosalila_graphics, table, x_actual-1, y_actual, pasoss, 'r', off_x, off_y, opponent);
     if(direction != 'u')
-        logic2(screen, table, x_actual, y_actual+1, pasoss, 'd', off_x, off_y, opponent);
+        logic2(rosalila_graphics, table, x_actual, y_actual+1, pasoss, 'd', off_x, off_y, opponent);
     if(direction != 'd')
-        logic2(screen, table, x_actual, y_actual-1, pasoss, 'u', off_x, off_y, opponent);
+        logic2(rosalila_graphics, table, x_actual, y_actual-1, pasoss, 'u', off_x, off_y, opponent);
 }
 
 bool Personaje::get_to_goal(char tablero[14][18], int x_actual, int y_actual, int pasoss, int x_goal, int y_goal, vector<Personaje*> opponent)
@@ -657,7 +728,7 @@ bool Personaje::get_to_goal(char tablero[14][18], int x_actual, int y_actual, in
             ||get_to_goal(tablero, x_actual, y_actual-1, pasoss, x_goal, y_goal, opponent);
 }
 
-void Personaje::get_to_goal2(vector<Position*> posses,vector<Personaje*>opponent, int offset_x, int offset_y, SDL_Surface* screen)
+void Personaje::get_to_goal2(vector<Position*> posses,vector<Personaje*>opponent, int offset_x, int offset_y, RosalilaGraphics* rosalila_graphics)
 {
     SDL_Rect offset;
     if(pos_vector >= 0)
@@ -767,10 +838,23 @@ void Personaje::get_to_goal2(vector<Position*> posses,vector<Personaje*>opponent
         }
     }
     tiempo++;
-    SDL_BlitSurface(this->anim[iteracion], NULL, screen, &offset);
+//    SDL_BlitSurface(this->anim[iteracion], NULL, screen, &offset);
+
+    rosalila_graphics->draw2DImage
+    (   this->anim[iteracion],//Image*
+        this->anim[iteracion]->getWidth(),this->anim[iteracion]->getHeight(),//width, height
+        offset.x,offset.y,//x,y
+        1.0,//scale
+        0.0,//rotation
+        false,//flip horizontally
+        0,0,//depth effect x,y
+        Color(255,255,255,255),//collor effect
+        false);//camera alignment
+
+
 }
 
-void Personaje::Draw_Arrow(vector<Position*> posses, int offset_x, int offset_y, SDL_Surface*screen)
+void Personaje::Draw_Arrow(vector<Position*> posses, int offset_x, int offset_y, RosalilaGraphics* rosalila_graphics)
 {
     SDL_Rect offset;
     int arrow_sprite = 14;
@@ -874,7 +958,19 @@ void Personaje::Draw_Arrow(vector<Position*> posses, int offset_x, int offset_y,
         }
         offset.x = (posses[pos_vector]->pos_x - offset_x)*64;
         offset.y = (posses[pos_vector]->pos_y - offset_y)*64;
-        SDL_BlitSurface(this->arrow[arrow_sprite], NULL, screen, &offset);
+//        SDL_BlitSurface(this->arrow[arrow_sprite], NULL, screen, &offset);
+
+        rosalila_graphics->draw2DImage
+        (   this->arrow[arrow_sprite],//Image*
+            this->arrow[arrow_sprite]->getWidth(),this->arrow[arrow_sprite]->getHeight(),//width, height
+            offset.x,offset.y,//x,y
+            1.0,//scale
+            0.0,//rotation
+            false,//flip horizontally
+            0,0,//depth effect x,y
+            Color(255,255,255,255),//collor effect
+            false);//camera alignment
+
         pos_vector++;
     }
 }

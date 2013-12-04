@@ -29,3 +29,150 @@
 1385595318 source:c:\users\joseph griffin\documents\unitec\2013 - 2 - 2\programacion iii\tab2\position.cpp
 	"Position.h"
 
+1386177249 source:/home/turupawn/Projects/Codeblocks/TacticalFork/lesson08.cpp
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"SDL/SDL_ttf.h"
+	<string>
+	"Personaje.h"
+	<vector>
+	"Position.h"
+	"SDL/SDL_mixer.h"
+	"RosalilaGraphics/RosalilaGraphics.h"
+	"RosalilaGraphics/Timer.h"
+	"RosalilaInputs/RosalilaInputs.h"
+	"RosalilaSound/RosalilaSound.h"
+
+1386175889 /home/turupawn/Projects/Codeblocks/TacticalFork/Personaje.h
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"SDL/SDL_ttf.h"
+	<string>
+	<sstream>
+	<vector>
+	<cmath>
+	<cstdlib>
+	"SDL/SDL_mixer.h"
+	"Position.h"
+	"RosalilaGraphics/RosalilaGraphics.h"
+	"RosalilaGraphics/Timer.h"
+	"RosalilaInputs/RosalilaInputs.h"
+	"RosalilaSound/RosalilaSound.h"
+
+1386172928 /home/turupawn/Projects/Codeblocks/TacticalFork/Position.h
+
+1386177180 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Personaje.cpp
+	"Personaje.h"
+
+1386172928 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Position.cpp
+	"Position.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaAI/Automata.cpp
+	"RosalilaAI/Automata.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaAI/Estado.cpp
+	"RosalilaAI/Estado.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaAI/RosalilaAI.cpp
+	"RosalilaAI/RosalilaAI.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaAI/Transicion.cpp
+	"RosalilaAI/Transicion.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaGraphics/Animation.cpp
+	"RosalilaGraphics/Animation.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaGraphics/Cube.cpp
+	"RosalilaGraphics/Cube.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaGraphics/Explosion.cpp
+	"RosalilaGraphics/Explosion.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaGraphics/Image.cpp
+	"RosalilaGraphics/RosalilaGraphics.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaGraphics/Object3D.cpp
+	"RosalilaGraphics/Object3D.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaGraphics/RosalilaGraphics.cpp
+	"RosalilaGraphics/RosalilaGraphics.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaGraphics/Timer.cpp
+	"SDL/SDL.h"
+	"RosalilaGraphics/Timer.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaInputs/Boton.cpp
+	"RosalilaInputs/Boton.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaInputs/Receiver.cpp
+	"RosalilaInputs/RosalilaInputs.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaInputs/RosalilaInputs.cpp
+	"RosalilaInputs/RosalilaInputs.h"
+	<sstream>
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/Elemento.cpp
+	"RosalilaMenus/Elemento.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/MenuBarra.cpp
+	"RosalilaMenus/MenuBarra.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/MenuBoton.cpp
+	"RosalilaMenus/MenuBoton.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/MenuCharSelect.cpp
+	"RosalilaMenus/MenuCharSelect.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/MenuContenedor.cpp
+	"RosalilaMenus/MenuContenedor.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/MenuGallery.cpp
+	"RosalilaMenus/MenuGallery.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/MenuImagen.cpp
+	"RosalilaMenus/MenuImagen.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/MenuLista.cpp
+	"RosalilaMenus/MenuLista.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaMenus/MenuTexto.cpp
+	"RosalilaMenus/MenuTexto.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaNetwork/RosalilaNetwork.cpp
+	"RosalilaNetwork/RosalilaNetwork.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaSound/RosalilaSound.cpp
+	"RosalilaSound.h"
+
+1386173845 /home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaSound/RosalilaSound.h
+	<string>
+	<vector>
+	<iostream>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"SDL/SDL_ttf.h"
+	"SDL/SDL_mixer.h"
+	"RosalilaUtility/RosalilaUtility.h"
+	<map>
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/RosalilaUtility/RosalilaUtility.cpp
+	"RosalilaUtility/RosalilaUtility.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/TinyXml/tinystr.cpp
+	"TinyXml/tinystr.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/TinyXml/tinyxml.cpp
+	<ctype.h>
+	<sstream>
+	<iostream>
+	"TinyXml/tinyxml.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/TinyXml/tinyxmlerror.cpp
+	"TinyXml/tinyxml.h"
+
+1386173845 source:/home/turupawn/Projects/Codeblocks/TacticalFork/Rosalila/TinyXml/tinyxmlparser.cpp
+	<ctype.h>
+	<stddef.h>
+	"TinyXml/tinyxml.h"
+	<windows.h>
+
